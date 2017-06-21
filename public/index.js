@@ -6,14 +6,12 @@ var onLoad = function(){
 
   request.addEventListener('load', function(){
     var jsonString = request.responseText;
-
     var countries = JSON.parse(jsonString);
 
     var dropdown = populateList(countries);
     var index = loadSavedCountry();
     displayCountryProperties(countries, index);
     preselectCountry(dropdown, index);
-
     setMapTo(countries[index]);
   });
 }//app
@@ -44,10 +42,7 @@ var preselectCountry = function(dropdown, index){
 }
 
 var populateList = function(countries){
-
   var dropdown = document.getElementById('country-selector');
-
-  console.log("countries: ", countries);
 
   countries.forEach(function(country){
     var optionElement = document.createElement('option');
@@ -56,7 +51,6 @@ var populateList = function(countries){
 
     dropdown.onchange = function(){
       var index = this.selectedIndex;
-      console.log("index: ", index);
       displayCountryProperties(countries, index);
       save(index);
     }
@@ -120,7 +114,6 @@ var convertToCountries = function(countries, borderingCountryCodes){
   borderingCountryCodes.forEach(function(countryCode){
     resultArray.push(getCountry(countries, countryCode));
   })
-  console.log("resultArray: ", resultArray);
   return resultArray;
 }
 
